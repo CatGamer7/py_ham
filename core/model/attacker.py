@@ -9,6 +9,9 @@ class Attacker:
     penetration: Non_Positive_Value
     damage: Base_Value
 
+    STAT_HEADER = "    A    |    H    |    S    |    P    |    D    "
+    STAT_COL_WIDTH = 9
+
     def __init__(
         self, in_attacks: Base_Value, in_skill: Simple_Value | None,
         in_strength: Simple_Value, in_penetration: Non_Positive_Value,
@@ -21,13 +24,14 @@ class Attacker:
         self.damage = in_damage
 
     def __str__(self):
-        return " | ".join(
+        return Attacker.STAT_HEADER + "\n" + "|".join(
             (
-                f"A: {self.attacks}",
-                f"H: {self.skill if self.skill else "n/a"}",
-                f"S: {self.strength}",
-                f"P: {self.penetration}",
-                f"D: {self.damage}"
+                f"{str(self.attacks):^{Attacker.STAT_COL_WIDTH}}",
+                f"{f"{str(self.skill):^{Attacker.STAT_COL_WIDTH}}" \
+                   if self.skill else "   n/a   "}",
+                f"{str(self.strength):^{Attacker.STAT_COL_WIDTH}}",
+                f"{str(self.penetration):^{Attacker.STAT_COL_WIDTH}}",
+                f"{str(self.damage):^{Attacker.STAT_COL_WIDTH}}"
             )
         )
     

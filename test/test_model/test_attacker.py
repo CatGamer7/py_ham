@@ -17,5 +17,6 @@ class Test_Attacker(TestCase):
 
         self.assertEqual(
             str(ang),
-            "A: d3 | H: n/a | S: 9 | P: -4 | D: d6 +6"
+            "    A    |    H    |    S    |    P    |    D    \n" + \
+            "   d3    |   n/a   |    9    |   -4    |  d6 +6  "
         )

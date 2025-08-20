@@ -13,8 +13,9 @@ class Test_Defender(TestCase):
             Simple_Value(4),
             None
         )
-
+        
         self.assertEqual(
             str(de),
-            "T: 5 | S: 3 | I: 4 | F: n/a"
+            "    T    |    S    |    I    |    F    \n" + \
+            "    5    |    3    |    4    |   n/a   "
         )
