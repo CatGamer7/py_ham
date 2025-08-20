@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+from core.model.reroll import Reroll
 from core.model.value import Simple_Value
 
 
@@ -27,4 +28,35 @@ class Test_Simple_Value(TestCase):
         self.assertEqual(
             i7.get_value(),
             7
+        )
+
+    def test_simple_value_str(self):
+        i7 = Simple_Value(7, 1, Reroll.NO)
+        self.assertEqual(
+            str(i7),
+            "7 +1"
+        )
+
+        i7 = Simple_Value(7, -1, Reroll.NO)
+        self.assertEqual(
+            str(i7),
+            "7 -1"
+        )
+
+        i7 = Simple_Value(7, 0, Reroll.ONES)
+        self.assertEqual(
+            str(i7),
+            "7 r1"
+        )
+
+        i7 = Simple_Value(7, 0, Reroll.FULL)
+        self.assertEqual(
+            str(i7),
+            "7 r"
+        )
+        
+        i7 = Simple_Value(7, 1, Reroll.ONES)
+        self.assertEqual(
+            str(i7),
+            "7 +1 r1"
         )

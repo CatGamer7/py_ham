@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+from core.model.reroll import Reroll
 from core.model.value import Random_Value
 
 
@@ -20,7 +21,7 @@ class Test_Random_Value(TestCase):
         )
         self.assertEqual(
             str(d6_6),
-            "d6+6"
+            "d6 +6"
         )
 
         self.assertIn(
@@ -47,4 +48,35 @@ class Test_Random_Value(TestCase):
         self.assertAlmostEqual(
             d6_6.expected_value(),
             9.5
+        )
+
+    def test_simple_value_str(self):
+        d6 = Random_Value(6, 1, Reroll.NO)
+        self.assertEqual(
+            str(d6),
+            "d6 +1"
+        )
+
+        d6 = Random_Value(6, -1, Reroll.NO)
+        self.assertEqual(
+            str(d6),
+            "d6 -1"
+        )
+
+        d6 = Random_Value(6, 0, Reroll.ONES)
+        self.assertEqual(
+            str(d6),
+            "d6 r1"
+        )
+
+        d6 = Random_Value(6, 0, Reroll.FULL)
+        self.assertEqual(
+            str(d6),
+            "d6 r"
+        )
+        
+        d6 = Random_Value(6, 1, Reroll.ONES)
+        self.assertEqual(
+            str(d6),
+            "d6 +1 r1"
         )
