@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from core.model.reroll import Reroll
+from core.model import Format_Exception, Reroll
 from core.model.value import Simple_Value
 
 
@@ -60,3 +60,13 @@ class Test_Simple_Value(TestCase):
             str(i7),
             "7 +1 r1"
         )
+
+    def test_from_str_validate(self):
+        tup = Simple_Value.from_str_validate("1 +1 r1")
+        self.assertEqual(
+            tup,
+            (1, 1, Reroll.ONES)
+        )
+
+        with self.assertRaises(Format_Exception):
+            Simple_Value.from_str_validate("d6 +1 r1")

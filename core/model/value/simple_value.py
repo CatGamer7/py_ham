@@ -1,3 +1,5 @@
+from core.model.format_exception import Format_Exception
+
 from .base_value import Base_Value, Reroll
 
 
@@ -21,17 +23,26 @@ class Simple_Value(Base_Value):
         return hash((self.value, self.modifier, self.reroll))
 
     def __str__(self):
-        out = f"{self.value}"
-
-        if self.modifier:
-            out += f" {self.modifier:+}"
-
-        out += str(self.reroll)
-
-        return out
+        out = str(self.value)
+        return out + self._str_partial()
     
     def __call__(self) -> int:
         return self.value
+
+    @staticmethod
+    def from_str_validate(in_str: str) -> tuple[int, int, Reroll]:
+        value, mod, reroll = Base_Value._from_str_partial(in_str)
+
+        try:
+            value = int(value)
+
+        except ValueError:
+            raise Format_Exception(
+                token=value,
+                reason="not a valid integer"
+            )
+        
+        return (value, mod, reroll)
 
     def expected_value(self) -> float:
         return float(self.value)

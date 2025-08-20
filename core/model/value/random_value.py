@@ -1,5 +1,7 @@
 from random import randint
 
+from core.model.format_exception import Format_Exception
+
 from .base_value import Base_Value, Reroll
 
 
@@ -28,16 +30,32 @@ class Random_Value(Base_Value):
 
     def __str__(self):
         out = f"d{self.die_size}"
-
-        if self.modifier:
-            out += f" {self.modifier:+}"
-
-        out += str(self.reroll)
-
-        return out
+        return out + self._str_partial()
 
     def __call__(self) -> int:
         return randint(1, self.die_size) + self.modifier
+
+    @staticmethod
+    def from_str_validate(in_str: str) -> tuple[int, int, Reroll]:
+        value, mod, reroll = Base_Value._from_str_partial(in_str)
+        die = value[1:] # drop the leading "d"
+
+        try:
+            die = int(die)
+
+        except ValueError:
+            raise Format_Exception(
+                token=value,
+                reason="not a valid integer"
+            )
+        
+        if die < 2:
+            raise Format_Exception(
+                token=value,
+                reason="die size nonsensical"
+            )
+        
+        return (die, mod, reroll)
 
     def expected_value(self) -> float:
         match self.reroll:
@@ -71,7 +89,8 @@ class Random_Value(Base_Value):
                 normal_ev = (self.die_size + 1) / 2
                 floored_nat_ev = int(normal_ev)
                 lower_rerolled_ev = (floored_nat_ev / self.die_size) * normal_ev
-                upper_ev = (floored_nat_ev + 1 + self.die_size) / self.die_size 
+                upper_ev = (floored_nat_ev + 1 + self.die_size) * \
+                    (self.die_size - floored_nat_ev) / (2 * self.die_size) 
 
                 return lower_rerolled_ev + upper_ev + self.modifier
     

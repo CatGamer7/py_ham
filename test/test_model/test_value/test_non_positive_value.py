@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+from core.model import Format_Exception, Reroll
 from core.model.value import Non_Positive_Value
 
 
@@ -31,3 +32,13 @@ class Test_Non_Positive_Value(TestCase):
             n1.get_value(),
             -1
         )
+
+    def test_from_str_validate(self):
+        tup = Non_Positive_Value.from_str_validate("-4")
+        self.assertEqual(
+            tup,
+            (-4, 0, Reroll.NO)
+        )
+
+        with self.assertRaises(Format_Exception):
+            Non_Positive_Value.from_str_validate("4")

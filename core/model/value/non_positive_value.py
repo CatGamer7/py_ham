@@ -1,4 +1,4 @@
-from .simple_value import Simple_Value, Reroll
+from .simple_value import Format_Exception, Simple_Value, Reroll
 
 
 class Non_Positive_Value(Simple_Value):
@@ -13,3 +13,16 @@ class Non_Positive_Value(Simple_Value):
             raise AttributeError("expected non-positive integer")
         
         super().__init__(in_value)
+
+    
+    @staticmethod
+    def from_str_validate(in_str: str) -> tuple[int, int, Reroll]:
+        value, mod, reroll = Simple_Value.from_str_validate(in_str)
+
+        if value > 0:
+            raise Format_Exception(
+                token=str(value),
+                reason="expected non-positive integer"
+            )
+        
+        return (value, mod, reroll)

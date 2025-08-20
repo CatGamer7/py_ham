@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from core.model.reroll import Reroll
+from core.model import Format_Exception, Reroll
 from core.model.value import Random_Value
 
 
@@ -50,7 +50,7 @@ class Test_Random_Value(TestCase):
             9.5
         )
 
-    def test_simple_value_str(self):
+    def test_random_value_str(self):
         d6 = Random_Value(6, 1, Reroll.NO)
         self.assertEqual(
             str(d6),
@@ -79,4 +79,42 @@ class Test_Random_Value(TestCase):
         self.assertEqual(
             str(d6),
             "d6 +1 r1"
+        )
+
+    def test_from_str_validate(self):
+        tup = Random_Value.from_str_validate("d6 +1 r1")
+        self.assertEqual(
+            tup,
+            (6, 1, Reroll.ONES)
+        )
+
+        with self.assertRaises(Format_Exception):
+            Random_Value.from_str_validate("d1 +1 r1")
+
+        with self.assertRaises(Format_Exception):
+            Random_Value.from_str_validate("dd6 +1 r1")
+
+    def test_ev(self):
+        d6_r1 = Random_Value(6, 0, Reroll.ONES)
+        self.assertAlmostEqual(
+            d6_r1.expected_value(),
+            47 / 12
+        )
+
+        d6_r = Random_Value(6, 0, Reroll.FULL)
+        self.assertAlmostEqual(
+            d6_r.expected_value(),
+            51 / 12
+        )
+
+        d6_p1_r1 = Random_Value(6, 1, Reroll.ONES)
+        self.assertAlmostEqual(
+            d6_p1_r1.expected_value(),
+            59 / 12
+        )
+
+        d6_p2_r = Random_Value(6, 2, Reroll.FULL)
+        self.assertAlmostEqual(
+            d6_p2_r.expected_value(),
+            75 / 12
         )

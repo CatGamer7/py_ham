@@ -1,5 +1,7 @@
 from enum import Enum
 
+from core.model.format_exception import Format_Exception
+
 
 class Reroll(Enum):
     NO = 0
@@ -12,7 +14,25 @@ class Reroll(Enum):
                 return ""
 
             case Reroll.ONES:
-                return " r1"
+                return "r1"
             
             case Reroll.FULL:
-                return " r"
+                return "r"
+            
+    @staticmethod
+    def from_str(in_str: str):
+        match in_str:
+            case "r1":
+                return Reroll.ONES
+            
+            case "r":
+                return Reroll.FULL
+            
+            case "":
+                return Reroll.NO
+            
+            case _:
+                raise Format_Exception(
+                    token=in_str,
+                    reason="invalid reroll value"
+                )
