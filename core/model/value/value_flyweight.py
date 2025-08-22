@@ -1,4 +1,5 @@
 from .base_value import Base_Value
+from .not_assigned_value import Not_Assigned_Value
 from .non_positive_value import Non_Positive_Value
 from .random_value import Random_Value
 from .positive_value import Positive_Value
@@ -6,13 +7,19 @@ from .positive_value import Positive_Value
 from core.model.reroll import Reroll
 
 
+# Serves as a singleton when imported from its module
 class Value_Flyweight:
 
+    na: Not_Assigned_Value = Not_Assigned_Value()
     randoms: dict[int, Random_Value] = {}
     simples: dict[int, Positive_Value] = {}
 
+    @staticmethod
+    def get_not_assigned_value() -> Not_Assigned_Value:
+        return Value_Flyweight.na
+
+    @staticmethod
     def get_non_positive_value(
-        self,
         in_value: int,
         in_modifier: int = 0,
         in_reroll: Reroll = Reroll.NO
@@ -20,7 +27,7 @@ class Value_Flyweight:
         key = hash((in_value, in_modifier, in_reroll))
 
         return Value_Flyweight.__get_or_create_value(
-            self.simples,
+            Value_Flyweight.simples,
             key,
             Non_Positive_Value,
             in_value = in_value,
@@ -28,8 +35,8 @@ class Value_Flyweight:
             in_reroll = in_reroll
         )
         
+    @staticmethod
     def get_positive_value(
-        self,
         in_value: int,
         in_modifier: int = 0,
         in_reroll: Reroll = Reroll.NO
@@ -37,7 +44,7 @@ class Value_Flyweight:
         key = hash((in_value, in_modifier, in_reroll))
 
         return Value_Flyweight.__get_or_create_value(
-            self.simples,
+            Value_Flyweight.simples,
             key,
             Positive_Value,
             in_value = in_value,
@@ -45,8 +52,8 @@ class Value_Flyweight:
             in_reroll = in_reroll
         )
 
+    @staticmethod
     def get_random_value(
-        self,
         in_die_size: int,
         in_modifier: int = 0,
         in_reroll: Reroll = Reroll.NO
@@ -54,7 +61,7 @@ class Value_Flyweight:
         key = hash((in_die_size, in_modifier, in_reroll))
 
         return Value_Flyweight.__get_or_create_value(
-            self.randoms,
+            Value_Flyweight.randoms,
             key,
             Random_Value,
             in_die_size = in_die_size,

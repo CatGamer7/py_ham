@@ -12,31 +12,31 @@ from core.model.value import (
 class Test_Value_Flyweight(TestCase):
 
     def test_flyweight_non_positive(self):
-        flyweight = Value_Flyweight()
-
-        n1 = flyweight.get_non_positive_value(-1)
-        n2 = flyweight.get_non_positive_value(-4)
-        n1a1 = flyweight.get_non_positive_value(-1)
+        n1 = Value_Flyweight.get_non_positive_value(-1)
+        n2 = Value_Flyweight.get_non_positive_value(-4)
+        n1a1 = Value_Flyweight.get_non_positive_value(-1)
 
         self.__compare_cahced(n1, n2, n1a1, Non_Positive_Value)
         
     def test_flyweight_random(self):
-        flyweight = Value_Flyweight()
-
-        n1 = flyweight.get_random_value(6)
-        n2 = flyweight.get_random_value(6, 1)
-        n1a1 = flyweight.get_random_value(6)
+        n1 = Value_Flyweight.get_random_value(6)
+        n2 = Value_Flyweight.get_random_value(6, 1)
+        n1a1 = Value_Flyweight.get_random_value(6)
 
         self.__compare_cahced(n1, n2, n1a1, Random_Value)
 
     def test_flyweight_positive(self):
-        flyweight = Value_Flyweight()
-
-        n1 = flyweight.get_positive_value(1)
-        n2 = flyweight.get_positive_value(2)
-        n1a1 = flyweight.get_positive_value(1)
+        n1 = Value_Flyweight.get_positive_value(1)
+        n2 = Value_Flyweight.get_positive_value(2)
+        n1a1 = Value_Flyweight.get_positive_value(1)
 
         self.__compare_cahced(n1, n2, n1a1, Simple_Value)
+
+    def test_flyweght_na(self):
+        na1 = Value_Flyweight.get_not_assigned_value()
+        na2 = Value_Flyweight.get_not_assigned_value()
+
+        self.assertIs(na1, na2)
 
     def __compare_cahced(
         self,
@@ -62,3 +62,11 @@ class Test_Value_Flyweight(TestCase):
             obj_1,
             obj_1a1
         )
+
+    def test_persistence(self):
+        block = lambda: Value_Flyweight.get_positive_value(1)
+
+        o1 = Value_Flyweight.get_positive_value(1)
+        o2 = block()
+
+        self.assertIs(o1, o2)

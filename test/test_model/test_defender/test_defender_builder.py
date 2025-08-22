@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from core.model.defender import Defender, Defender_Builder
-from core.model.value import Positive_Value
+from core.model.value import Positive_Value, Not_Assigned_Value
 
 
 class Test_Defender_Builder(TestCase):
@@ -11,7 +11,7 @@ class Test_Defender_Builder(TestCase):
             Positive_Value(5),
             Positive_Value(2),
             Positive_Value(4),
-            None
+            Not_Assigned_Value()
         )
 
         builder = Defender_Builder()

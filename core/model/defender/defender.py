@@ -1,4 +1,4 @@
-from core.model.value import Positive_Value
+from core.model.value import Positive_Value, Not_Assigned_Value
 from core.model.format_exception import Format_Exception
 
 
@@ -6,16 +6,16 @@ class Defender:
 
     toughness: Positive_Value
     save: Positive_Value
-    invulnerable: Positive_Value | None
-    feel_no_pain: Positive_Value | None
+    invulnerable: Positive_Value | Not_Assigned_Value
+    feel_no_pain: Positive_Value | Not_Assigned_Value
     
     STAT_HEADER = "    T    |    S    |    I    |    F    "
     STAT_COL_WIDTH = 9
 
     def __init__(
         self, in_toughness: Positive_Value, in_save: Positive_Value,
-        in_invulnerable: Positive_Value | None = None,
-        in_feel_no_pain: Positive_Value | None = None
+        in_invulnerable: Positive_Value | Not_Assigned_Value = Not_Assigned_Value(),
+        in_feel_no_pain: Positive_Value | Not_Assigned_Value = Not_Assigned_Value()
     ):
         Defender._validate_toughness(in_toughness)
         Defender._validate_save(in_save)
@@ -44,18 +44,20 @@ class Defender:
             )
         
     @staticmethod
-    def _validate_invulnerable(in_invulnerable: Positive_Value | None):
+    def _validate_invulnerable(in_invulnerable: Positive_Value | Not_Assigned_Value):
         if not (isinstance(in_invulnerable, Positive_Value) or \
-                (in_invulnerable is None)):
+            isinstance(in_invulnerable, Not_Assigned_Value)
+        ):
             raise Format_Exception(
                 token=str(in_invulnerable),
                 reason="not a valid value for defender's invulnerable"
             )
         
     @staticmethod
-    def _validate_feel_no_pain(in_feel_no_pain: Positive_Value | None):
+    def _validate_feel_no_pain(in_feel_no_pain: Positive_Value | Not_Assigned_Value):
         if not (isinstance(in_feel_no_pain, Positive_Value) or \
-                (in_feel_no_pain is None)):
+            isinstance(in_feel_no_pain, Not_Assigned_Value)
+        ):
             raise Format_Exception(
                 token=str(in_feel_no_pain),
                 reason="not a valid value for defender's feel no pain"
@@ -72,9 +74,7 @@ class Defender:
             (
                 f"{str(self.toughness):^{Defender.STAT_COL_WIDTH}}",
                 f"{str(self.save):^{Defender.STAT_COL_WIDTH}}",
-                f"{f"{str(self.invulnerable):^{Defender.STAT_COL_WIDTH}}" \
-                   if self.invulnerable else "   n/a   "}",
-                f"{f"{str(self.feel_no_pain):^{Defender.STAT_COL_WIDTH}}" \
-                   if self.feel_no_pain else "   n/a   "}"
+                f"{str(self.invulnerable):^{Defender.STAT_COL_WIDTH}}",
+                f"{str(self.feel_no_pain):^{Defender.STAT_COL_WIDTH}}"
             )
         )

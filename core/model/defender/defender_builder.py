@@ -56,3 +56,7 @@ class Defender_Builder:
             self.invulerable,
             self.feel_no_pain
         )
+
+    # Returns True when object is ready
+    def __bool__(self):
+        return self.state == Defender_Builder_State.READY

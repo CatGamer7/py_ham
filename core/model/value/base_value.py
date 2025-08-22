@@ -18,6 +18,9 @@ class Base_Value(ABC):
         return (self.modifier == other.modifier) and \
             (self.reroll == other.reroll)
 
+    def __bool__(self):
+        return True
+    
     @abstractmethod
     def __hash__(self):
         pass

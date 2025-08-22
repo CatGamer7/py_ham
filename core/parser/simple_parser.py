@@ -10,11 +10,6 @@ from core.model.value import (
 
 class Simple_Parser:
 
-    value_flyweight: Value_Flyweight
-
-    def __init__(self):
-        self.value_flyweight = Value_Flyweight()
-
     def parse_defender(self, defender_str: str) -> Defender:
         value_strs = defender_str.split("|")
 
@@ -47,7 +42,7 @@ class Simple_Parser:
 
         return Attacker(*values)
 
-    def parse_value(self, value_str: str) -> Base_Value | None:
+    def parse_value(self, value_str: str) -> Base_Value:
         trimmed = value_str.strip()
 
         # Check the first symbol to deduce the type:
@@ -55,7 +50,7 @@ class Simple_Parser:
         # 2. Simple starts with any digit.
         # 3. Random starts with "d".
         if (trimmed == "") or (trimmed == "n/a"):
-            return None
+            return Value_Flyweight.get_not_assigned_value()
 
         if (trimmed[0] == "-") or (trimmed[0] == "0"):
             return self._parse_non_positive(trimmed)
@@ -75,7 +70,7 @@ class Simple_Parser:
     def _parse_non_positive(self, value_str: str) -> Non_Positive_Value:
         value, mod, reroll = Non_Positive_Value.from_str_validate(value_str)
 
-        return self.value_flyweight.get_non_positive_value(
+        return Value_Flyweight.get_non_positive_value(
             value,
             mod,
             reroll
@@ -84,7 +79,7 @@ class Simple_Parser:
     def _parse_positive(self, value_str: str) -> Positive_Value:
         value, mod, reroll = Positive_Value.from_str_validate(value_str)
 
-        return self.value_flyweight.get_positive_value(
+        return Value_Flyweight.get_positive_value(
             value,
             mod,
             reroll
@@ -93,7 +88,7 @@ class Simple_Parser:
     def _parse_random(self, value_str: str) -> Random_Value:
         die_size, mod, reroll = Random_Value.from_str_validate(value_str)
 
-        return self.value_flyweight.get_random_value(
+        return Value_Flyweight.get_random_value(
             die_size,
             mod,
             reroll

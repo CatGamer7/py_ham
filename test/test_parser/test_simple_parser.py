@@ -1,7 +1,12 @@
 from unittest import TestCase
 
 from core.model import Format_Exception, Reroll
-from core.model.value import Simple_Value, Non_Positive_Value, Random_Value
+from core.model.value import (
+    Simple_Value,
+    Non_Positive_Value,
+    Random_Value,
+    Not_Assigned_Value
+)
 from core.parser import Simple_Parser
 
 
@@ -43,13 +48,13 @@ class Test_Simple_Parser(TestCase):
         none = parser.parse_value("")
         self.assertEqual(
             none,
-            None
+            Not_Assigned_Value()
         )
 
         na = parser.parse_value("n/a")
         self.assertEqual(
             na,
-            None
+            Not_Assigned_Value()
         )
 
     def test_parse_attacker(self):

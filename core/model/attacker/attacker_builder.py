@@ -63,3 +63,7 @@ class Attacker_Builder:
             self.penetration,
             self.damage
         )
+
+    # Returns True when object is ready
+    def __bool__(self):
+        return self.state == Attacker_Builder_State.READY

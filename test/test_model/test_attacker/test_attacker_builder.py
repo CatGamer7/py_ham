@@ -1,7 +1,12 @@
 from unittest import TestCase
 
 from core.model.attacker import Attacker, Attacker_Builder
-from core.model.value import Non_Positive_Value, Random_Value, Positive_Value
+from core.model.value import (
+    Non_Positive_Value,
+    Random_Value,
+    Positive_Value,
+    Not_Assigned_Value
+)
 
 
 class Test_Attacker_Builder(TestCase):
@@ -9,7 +14,7 @@ class Test_Attacker_Builder(TestCase):
     def test_build(self):
         attacker = Attacker(
             Random_Value(6),
-            None,
+            Not_Assigned_Value(),
             Positive_Value(4),
             Non_Positive_Value(-1),
             Positive_Value(1)

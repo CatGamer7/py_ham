@@ -1,22 +1,30 @@
-from core.model.value import Base_Value, Non_Positive_Value, Positive_Value
+from core.model.value import (
+    Random_Value,
+    Non_Positive_Value,
+    Positive_Value,
+    Not_Assigned_Value
+)
 from core.model.format_exception import Format_Exception
 
 
 class Attacker:
 
-    attacks: Base_Value
+    attacks: Positive_Value | Random_Value
     skill: Positive_Value | None
     strength: Positive_Value
     penetration: Non_Positive_Value
-    damage: Base_Value
+    damage: Positive_Value | Random_Value
 
     STAT_HEADER = "    A    |    H    |    S    |    P    |    D    "
     STAT_COL_WIDTH = 9
 
     def __init__(
-        self, in_attacks: Base_Value, in_skill: Positive_Value | None,
-        in_strength: Positive_Value, in_penetration: Non_Positive_Value,
-        in_damage: Base_Value
+        self,
+        in_attacks: Positive_Value | Random_Value,
+        in_skill: Positive_Value | Not_Assigned_Value,
+        in_strength: Positive_Value,
+        in_penetration: Non_Positive_Value,
+        in_damage: Positive_Value | Random_Value
     ):
         Attacker._validate_attacks(in_attacks)
         Attacker._validate_skill(in_skill)
@@ -31,16 +39,20 @@ class Attacker:
         self.damage = in_damage
 
     @staticmethod
-    def _validate_attacks(in_attacks: Base_Value):
-        if not isinstance(in_attacks, Base_Value):
+    def _validate_attacks(in_attacks: Positive_Value | Random_Value):
+        if not (isinstance(in_attacks, Positive_Value) or \
+            isinstance(in_attacks, Random_Value)
+        ):
             raise Format_Exception(
                 token=str(in_attacks),
                 reason="not a valid value for attacker's attack"
             )
     
     @staticmethod
-    def _validate_skill(in_skill: Positive_Value | None):
-        if not (isinstance(in_skill, Positive_Value) or (in_skill is None)):
+    def _validate_skill(in_skill: Positive_Value | Not_Assigned_Value):
+        if not (isinstance(in_skill, Positive_Value) or \
+            isinstance(in_skill, Not_Assigned_Value)
+        ):
             raise Format_Exception(
                 token=str(in_skill),
                 reason="not a valid value for attacker's skill"
@@ -63,8 +75,10 @@ class Attacker:
             )
     
     @staticmethod
-    def _validate_damage(in_damage: Base_Value):
-        if not isinstance(in_damage, Base_Value):
+    def _validate_damage(in_damage: Positive_Value | Random_Value):
+        if not (isinstance(in_damage, Positive_Value) or \
+            isinstance(in_damage, Random_Value)
+        ):
             raise Format_Exception(
                 token=str(in_damage),
                 reason="not a valid value for attacker's damage"
@@ -81,8 +95,7 @@ class Attacker:
         return Attacker.STAT_HEADER + "\n" + "|".join(
             (
                 f"{str(self.attacks):^{Attacker.STAT_COL_WIDTH}}",
-                f"{f"{str(self.skill):^{Attacker.STAT_COL_WIDTH}}" \
-                   if self.skill else "   n/a   "}",
+                f"{str(self.skill):^{Attacker.STAT_COL_WIDTH}}",
                 f"{str(self.strength):^{Attacker.STAT_COL_WIDTH}}",
                 f"{str(self.penetration):^{Attacker.STAT_COL_WIDTH}}",
                 f"{str(self.damage):^{Attacker.STAT_COL_WIDTH}}"

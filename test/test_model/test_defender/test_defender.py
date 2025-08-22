@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from core.model import Defender, Format_Exception
-from core.model.value import Positive_Value, Random_Value
+from core.model.value import Positive_Value, Random_Value, Not_Assigned_Value
 
 
 class Test_Defender(TestCase):
@@ -11,7 +11,7 @@ class Test_Defender(TestCase):
             Positive_Value(5),
             Positive_Value(3),
             Positive_Value(4),
-            None
+            Not_Assigned_Value()
         )
         
         self.assertEqual(
@@ -26,7 +26,7 @@ class Test_Defender(TestCase):
                 Random_Value(5),
                 Positive_Value(3),
                 Positive_Value(4),
-                None,
+                Not_Assigned_Value(),
             )
             
         with self.assertRaises(Format_Exception):
@@ -34,7 +34,7 @@ class Test_Defender(TestCase):
                 Positive_Value(5),
                 Random_Value(3),
                 Positive_Value(4),
-                None,
+                Not_Assigned_Value(),
             )
             
         with self.assertRaises(Format_Exception):
@@ -42,7 +42,7 @@ class Test_Defender(TestCase):
                 Positive_Value(5),
                 Positive_Value(3),
                 Random_Value(4),
-                None,
+                Not_Assigned_Value(),
             )
             
         with self.assertRaises(Format_Exception):

@@ -1,7 +1,12 @@
 from unittest import TestCase
 
 from core.model import Attacker, Format_Exception
-from core.model.value import Non_Positive_Value, Random_Value, Positive_Value
+from core.model.value import (
+    Non_Positive_Value,
+    Random_Value,
+    Positive_Value,
+    Not_Assigned_Value
+)
 
 
 class Test_Attacker(TestCase):
@@ -9,7 +14,7 @@ class Test_Attacker(TestCase):
     def test_attacker(self):
         ang = Attacker(
             Random_Value(3),
-            None,
+            Not_Assigned_Value(),
             Positive_Value(9),
             Non_Positive_Value(-4),
             Random_Value(6, 6)
@@ -24,8 +29,8 @@ class Test_Attacker(TestCase):
     def test_invalid(self):
         with self.assertRaises(Format_Exception):
             Attacker(
-                None,
-                None,
+                Not_Assigned_Value(),
+                Not_Assigned_Value(),
                 Positive_Value(9),
                 Non_Positive_Value(-4),
                 Random_Value(6, 6)
@@ -43,7 +48,7 @@ class Test_Attacker(TestCase):
         with self.assertRaises(Format_Exception):
             Attacker(
                 Random_Value(3),
-                None,
+                Not_Assigned_Value(),
                 Random_Value(9),
                 Non_Positive_Value(-4),
                 Random_Value(6, 6)
@@ -52,7 +57,7 @@ class Test_Attacker(TestCase):
         with self.assertRaises(Format_Exception):
             Attacker(
                 Random_Value(3),
-                None,
+                Not_Assigned_Value(),
                 Positive_Value(9),
                 Positive_Value(4),
                 Random_Value(6, 6)
@@ -61,8 +66,8 @@ class Test_Attacker(TestCase):
         with self.assertRaises(Format_Exception):
             Attacker(
                 Random_Value(3),
-                None,
+                Not_Assigned_Value(),
                 Positive_Value(9),
                 Non_Positive_Value(-4),
-                None
+                Not_Assigned_Value()
             )
