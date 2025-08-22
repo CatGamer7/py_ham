@@ -1,4 +1,5 @@
 from .value import Base_Value, Non_Positive_Value, Simple_Value
+from .format_exception import Format_Exception
 
 
 class Attacker:
@@ -17,6 +18,36 @@ class Attacker:
         in_strength: Simple_Value, in_penetration: Non_Positive_Value,
         in_damage: Base_Value
     ):
+        if not isinstance(in_attacks, Base_Value):
+            raise Format_Exception(
+                token=str(in_attacks),
+                reason="not a valid value for attacker's attack"
+            )
+        
+        if not (isinstance(in_skill, Simple_Value) or (in_skill is None)):
+            raise Format_Exception(
+                token=str(in_skill),
+                reason="not a valid value for attacker's skill"
+            )
+        
+        if not isinstance(in_strength, Simple_Value):
+            raise Format_Exception(
+                token=str(in_strength),
+                reason="not a valid value for attacker's strength"
+            )
+
+        if not isinstance(in_penetration, Non_Positive_Value):
+            raise Format_Exception(
+                token=str(in_penetration),
+                reason="not a valid value for attacker's penetration"
+            )
+        
+        if not isinstance(in_damage, Base_Value):
+            raise Format_Exception(
+                token=str(in_damage),
+                reason="not a valid value for attacker's damage"
+            )
+        
         self.attacks = in_attacks
         self.skill = in_skill
         self.strength = in_strength

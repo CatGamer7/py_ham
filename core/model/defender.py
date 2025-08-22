@@ -1,4 +1,5 @@
 from .value import Simple_Value
+from .format_exception import Format_Exception
 
 
 class Defender:
@@ -16,6 +17,32 @@ class Defender:
         in_invulnerable: Simple_Value | None = None,
         in_feel_no_pain: Simple_Value | None = None
     ):
+        if not isinstance(in_toughness, Simple_Value):
+            raise Format_Exception(
+                token=str(in_toughness),
+                reason="not a valid value for defender's toughness"
+            )
+        
+        if not isinstance(in_save, Simple_Value):
+            raise Format_Exception(
+                token=str(in_save),
+                reason="not a valid value for defender's save"
+            )
+        
+        if not (isinstance(in_invulnerable, Simple_Value) or \
+                (in_invulnerable is None)):
+            raise Format_Exception(
+                token=str(in_invulnerable),
+                reason="not a valid value for defender's invulnerable"
+            )
+        
+        if not (isinstance(in_feel_no_pain, Simple_Value) or \
+                (in_feel_no_pain is None)):
+            raise Format_Exception(
+                token=str(in_feel_no_pain),
+                reason="not a valid value for defender's feel no pain"
+            )
+
         self.toughness = in_toughness
         self.save = in_save
         self.invulnerable = in_invulnerable
