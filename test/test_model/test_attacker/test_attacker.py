@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from core.model import Attacker, Format_Exception
-from core.model.value import Non_Positive_Value, Random_Value, Simple_Value
+from core.model.value import Non_Positive_Value, Random_Value, Positive_Value
 
 
 class Test_Attacker(TestCase):
@@ -10,7 +10,7 @@ class Test_Attacker(TestCase):
         ang = Attacker(
             Random_Value(3),
             None,
-            Simple_Value(9),
+            Positive_Value(9),
             Non_Positive_Value(-4),
             Random_Value(6, 6)
         )
@@ -26,7 +26,7 @@ class Test_Attacker(TestCase):
             Attacker(
                 None,
                 None,
-                Simple_Value(9),
+                Positive_Value(9),
                 Non_Positive_Value(-4),
                 Random_Value(6, 6)
             )
@@ -35,7 +35,7 @@ class Test_Attacker(TestCase):
             Attacker(
                 Random_Value(3),
                 Random_Value(3),
-                Simple_Value(9),
+                Positive_Value(9),
                 Non_Positive_Value(-4),
                 Random_Value(6, 6)
             )
@@ -53,8 +53,8 @@ class Test_Attacker(TestCase):
             Attacker(
                 Random_Value(3),
                 None,
-                Simple_Value(9),
-                Simple_Value(4),
+                Positive_Value(9),
+                Positive_Value(4),
                 Random_Value(6, 6)
             )
 
@@ -62,7 +62,7 @@ class Test_Attacker(TestCase):
             Attacker(
                 Random_Value(3),
                 None,
-                Simple_Value(9),
+                Positive_Value(9),
                 Non_Positive_Value(-4),
                 None
             )

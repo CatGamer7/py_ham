@@ -1,12 +1,12 @@
-from .value import Base_Value, Non_Positive_Value, Simple_Value
-from .format_exception import Format_Exception
+from core.model.value import Base_Value, Non_Positive_Value, Positive_Value
+from core.model.format_exception import Format_Exception
 
 
 class Attacker:
 
     attacks: Base_Value
-    skill: Simple_Value | None
-    strength: Simple_Value
+    skill: Positive_Value | None
+    strength: Positive_Value
     penetration: Non_Positive_Value
     damage: Base_Value
 
@@ -14,45 +14,68 @@ class Attacker:
     STAT_COL_WIDTH = 9
 
     def __init__(
-        self, in_attacks: Base_Value, in_skill: Simple_Value | None,
-        in_strength: Simple_Value, in_penetration: Non_Positive_Value,
+        self, in_attacks: Base_Value, in_skill: Positive_Value | None,
+        in_strength: Positive_Value, in_penetration: Non_Positive_Value,
         in_damage: Base_Value
     ):
-        if not isinstance(in_attacks, Base_Value):
-            raise Format_Exception(
-                token=str(in_attacks),
-                reason="not a valid value for attacker's attack"
-            )
-        
-        if not (isinstance(in_skill, Simple_Value) or (in_skill is None)):
-            raise Format_Exception(
-                token=str(in_skill),
-                reason="not a valid value for attacker's skill"
-            )
-        
-        if not isinstance(in_strength, Simple_Value):
-            raise Format_Exception(
-                token=str(in_strength),
-                reason="not a valid value for attacker's strength"
-            )
-
-        if not isinstance(in_penetration, Non_Positive_Value):
-            raise Format_Exception(
-                token=str(in_penetration),
-                reason="not a valid value for attacker's penetration"
-            )
-        
-        if not isinstance(in_damage, Base_Value):
-            raise Format_Exception(
-                token=str(in_damage),
-                reason="not a valid value for attacker's damage"
-            )
+        Attacker._validate_attacks(in_attacks)
+        Attacker._validate_skill(in_skill)
+        Attacker._validate_strength(in_strength)
+        Attacker._validate_penetration(in_penetration)
+        Attacker._validate_damage(in_damage)
         
         self.attacks = in_attacks
         self.skill = in_skill
         self.strength = in_strength
         self.penetration = in_penetration
         self.damage = in_damage
+
+    @staticmethod
+    def _validate_attacks(in_attacks: Base_Value):
+        if not isinstance(in_attacks, Base_Value):
+            raise Format_Exception(
+                token=str(in_attacks),
+                reason="not a valid value for attacker's attack"
+            )
+    
+    @staticmethod
+    def _validate_skill(in_skill: Positive_Value | None):
+        if not (isinstance(in_skill, Positive_Value) or (in_skill is None)):
+            raise Format_Exception(
+                token=str(in_skill),
+                reason="not a valid value for attacker's skill"
+            )
+    
+    @staticmethod
+    def _validate_strength(in_strength: Positive_Value):
+        if not isinstance(in_strength, Positive_Value):
+            raise Format_Exception(
+                token=str(in_strength),
+                reason="not a valid value for attacker's strength"
+            )
+    
+    @staticmethod
+    def _validate_penetration(in_penetration: Non_Positive_Value):
+        if not isinstance(in_penetration, Non_Positive_Value):
+            raise Format_Exception(
+                token=str(in_penetration),
+                reason="not a valid value for attacker's penetration"
+            )
+    
+    @staticmethod
+    def _validate_damage(in_damage: Base_Value):
+        if not isinstance(in_damage, Base_Value):
+            raise Format_Exception(
+                token=str(in_damage),
+                reason="not a valid value for attacker's damage"
+            )
+    
+    def __eq__(self, value: "Attacker"):
+        return (self.attacks == value.attacks) and \
+            (self.skill == value.skill) and \
+            (self.strength == value.strength) and \
+            (self.penetration == value.penetration) and \
+            (self.damage == value.damage)
 
     def __str__(self):
         return Attacker.STAT_HEADER + "\n" + "|".join(

@@ -29,12 +29,12 @@ class Test_Value_Flyweight(TestCase):
 
         self.__compare_cahced(n1, n2, n1a1, Random_Value)
 
-    def test_flyweight_simple(self):
+    def test_flyweight_positive(self):
         flyweight = Value_Flyweight()
 
-        n1 = flyweight.get_simple_value(1)
-        n2 = flyweight.get_simple_value(2)
-        n1a1 = flyweight.get_simple_value(1)
+        n1 = flyweight.get_positive_value(1)
+        n2 = flyweight.get_positive_value(2)
+        n1a1 = flyweight.get_positive_value(1)
 
         self.__compare_cahced(n1, n2, n1a1, Simple_Value)
 

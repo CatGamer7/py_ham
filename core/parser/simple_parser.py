@@ -2,7 +2,7 @@ from core.model import Format_Exception, Attacker, Defender
 from core.model.value import (
     Base_Value,
     Non_Positive_Value,
-    Simple_Value,
+    Positive_Value,
     Random_Value,
     Value_Flyweight
 )
@@ -61,7 +61,7 @@ class Simple_Parser:
             return self._parse_non_positive(trimmed)
         
         elif trimmed[0].isdigit():
-            return self._parse_simple(trimmed)
+            return self._parse_positive(trimmed)
         
         elif trimmed[0] == "d":
             return self._parse_random(trimmed)
@@ -81,10 +81,10 @@ class Simple_Parser:
             reroll
         )
     
-    def _parse_simple(self, value_str: str) -> Simple_Value:
-        value, mod, reroll = Simple_Value.from_str_validate(value_str)
+    def _parse_positive(self, value_str: str) -> Positive_Value:
+        value, mod, reroll = Positive_Value.from_str_validate(value_str)
 
-        return self.value_flyweight.get_simple_value(
+        return self.value_flyweight.get_positive_value(
             value,
             mod,
             reroll

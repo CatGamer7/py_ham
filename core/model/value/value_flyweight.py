@@ -1,16 +1,15 @@
 from .base_value import Base_Value
 from .non_positive_value import Non_Positive_Value
 from .random_value import Random_Value
-from .simple_value import Simple_Value
+from .positive_value import Positive_Value
 
 from core.model.reroll import Reroll
 
 
 class Value_Flyweight:
 
-    non_positives: dict[int, Non_Positive_Value] = {}
     randoms: dict[int, Random_Value] = {}
-    simples: dict[int, Simple_Value] = {}
+    simples: dict[int, Positive_Value] = {}
 
     def get_non_positive_value(
         self,
@@ -21,7 +20,7 @@ class Value_Flyweight:
         key = hash((in_value, in_modifier, in_reroll))
 
         return Value_Flyweight.__get_or_create_value(
-            self.non_positives,
+            self.simples,
             key,
             Non_Positive_Value,
             in_value = in_value,
@@ -29,18 +28,18 @@ class Value_Flyweight:
             in_reroll = in_reroll
         )
         
-    def get_simple_value(
+    def get_positive_value(
         self,
         in_value: int,
         in_modifier: int = 0,
         in_reroll: Reroll = Reroll.NO
-    ) -> Simple_Value:
+    ) -> Positive_Value:
         key = hash((in_value, in_modifier, in_reroll))
 
         return Value_Flyweight.__get_or_create_value(
             self.simples,
             key,
-            Simple_Value,
+            Positive_Value,
             in_value = in_value,
             in_modifier = in_modifier,
             in_reroll = in_reroll
