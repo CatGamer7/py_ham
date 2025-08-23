@@ -65,8 +65,8 @@ class Test_Simple_Parser(TestCase):
         )
         self.assertEqual(
             str(attacker),
-            "    A    |    H    |    S    |    P    |    D    \n" + \
-            "    1    |    4    |    9    |   -4    |  d6 +2  "
+            "     A     |     H     |     S     |     P     |     D     \n" + \
+            "     1     |     4     |     9     |    -4     |   d6 +2   "
         )
 
         with self.assertRaises(Format_Exception):
@@ -92,8 +92,8 @@ class Test_Simple_Parser(TestCase):
         )
         self.assertEqual(
             str(defender),
-            "    T    |    S    |    I    |    F    \n" + \
-            "    9    |    2    |    5    |    5    "
+            "     T     |     S     |     I     |     F     \n" + \
+            "     9     |     2     |     5     |     5     "
         )
 
         with self.assertRaises(Format_Exception):

@@ -22,8 +22,8 @@ class Test_Attacker(TestCase):
 
         self.assertEqual(
             str(ang),
-            "    A    |    H    |    S    |    P    |    D    \n" + \
-            "   d3    |   n/a   |    9    |   -4    |  d6 +6  "
+            "     A     |     H     |     S     |     P     |     D     \n" + \
+            "    d3     |    n/a    |     9     |    -4     |   d6 +6   "
         )
 
     def test_invalid(self):

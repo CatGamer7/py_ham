@@ -16,8 +16,8 @@ class Test_Defender(TestCase):
         
         self.assertEqual(
             str(de),
-            "    T    |    S    |    I    |    F    \n" + \
-            "    5    |    3    |    4    |   n/a   "
+            "     T     |     S     |     I     |     F     \n" + \
+            "     5     |     3     |     4     |    n/a    "
         )
 
     def test_invalid(self):            

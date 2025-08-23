@@ -1,6 +1,7 @@
 from core.model.value import Positive_Value, Not_Assigned_Value
 from core.model.format_exception import Format_Exception
 
+from .constants import DEFENDER_STAT_COL_WIDTH, DEFENDER_STAT_HEADER
 
 class Defender:
 
@@ -9,8 +10,8 @@ class Defender:
     invulnerable: Positive_Value | Not_Assigned_Value
     feel_no_pain: Positive_Value | Not_Assigned_Value
     
-    STAT_HEADER = "    T    |    S    |    I    |    F    "
-    STAT_COL_WIDTH = 9
+    STAT_HEADER = DEFENDER_STAT_HEADER
+    STAT_COL_WIDTH = DEFENDER_STAT_COL_WIDTH
 
     def __init__(
         self, in_toughness: Positive_Value, in_save: Positive_Value,

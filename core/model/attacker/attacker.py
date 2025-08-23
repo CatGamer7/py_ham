@@ -6,6 +6,8 @@ from core.model.value import (
 )
 from core.model.format_exception import Format_Exception
 
+from .constants import ATTACKER_STAT_COL_WIDTH, ATTACKER_STAT_HEADER
+
 
 class Attacker:
 
@@ -15,8 +17,8 @@ class Attacker:
     penetration: Non_Positive_Value
     damage: Positive_Value | Random_Value
 
-    STAT_HEADER = "    A    |    H    |    S    |    P    |    D    "
-    STAT_COL_WIDTH = 9
+    STAT_HEADER = ATTACKER_STAT_HEADER
+    STAT_COL_WIDTH = ATTACKER_STAT_COL_WIDTH
 
     def __init__(
         self,
