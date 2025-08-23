@@ -56,7 +56,8 @@ class Value_Flyweight:
     def get_random_value(
         in_die_size: int,
         in_modifier: int = 0,
-        in_reroll: Reroll = Reroll.NO
+        in_reroll: Reroll = Reroll.NO,
+        in_multiplier: int = 1
     ) -> Random_Value:
         key = hash((in_die_size, in_modifier, in_reroll))
 
@@ -65,6 +66,7 @@ class Value_Flyweight:
             key,
             Random_Value,
             in_die_size = in_die_size,
+            in_multiplier = in_multiplier,
             in_modifier = in_modifier,
             in_reroll = in_reroll
         )

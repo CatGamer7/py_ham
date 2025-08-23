@@ -10,6 +10,7 @@ class Test_Random_Value(TestCase):
         d3 = Random_Value(3)
         d6 = Random_Value(6)
         d6_6 = Random_Value(6, 6)
+        _3d6 = Random_Value(6, in_multiplier=3)
 
         self.assertEqual(
             str(d3),
@@ -22,6 +23,10 @@ class Test_Random_Value(TestCase):
         self.assertEqual(
             str(d6_6),
             "d6 +6"
+        )
+        self.assertEqual(
+            str(_3d6),
+            "3d6"
         )
 
         self.assertIn(
@@ -36,6 +41,10 @@ class Test_Random_Value(TestCase):
             d6_6(),
             range(6, 13)
         )
+        self.assertIn(
+            _3d6(),
+            range(3, 18)
+        )
 
         self.assertAlmostEqual(
             d3.expected_value(),
@@ -48,6 +57,10 @@ class Test_Random_Value(TestCase):
         self.assertAlmostEqual(
             d6_6.expected_value(),
             9.5
+        )
+        self.assertAlmostEqual(
+            _3d6.expected_value(),
+            10.5
         )
 
     def test_random_value_str(self):
@@ -81,11 +94,17 @@ class Test_Random_Value(TestCase):
             "d6 +1 r1"
         )
 
+        _3d6_1_r1 = Random_Value(6, 1, Reroll.ONES, 3)
+        self.assertEqual(
+            str(_3d6_1_r1),
+            "3d6 +1 r1"
+        )
+
     def test_from_str_validate(self):
-        tup = Random_Value.from_str_validate("d6 +1 r1")
+        tup = Random_Value.from_str_validate("2d6 +1 r1")
         self.assertEqual(
             tup,
-            (6, 1, Reroll.ONES)
+            (6, 1, Reroll.ONES, 2)
         )
 
         with self.assertRaises(Format_Exception):
@@ -117,4 +136,10 @@ class Test_Random_Value(TestCase):
         self.assertAlmostEqual(
             d6_p2_r.expected_value(),
             75 / 12
+        )
+        
+        _2d6_p1_r1 = Random_Value(6, 1, Reroll.ONES, 2)
+        self.assertAlmostEqual(
+            _2d6_p1_r1.expected_value(),
+            59 / 6
         )

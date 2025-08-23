@@ -10,6 +10,12 @@ class Base_Value(ABC):
     reroll: Reroll
 
     def __init__(self, in_modifier: int = 0, in_reroll: Reroll = Reroll.NO):
+        if not isinstance(in_modifier, int):
+            raise AttributeError("expected integer modifier")
+        
+        if not isinstance(in_reroll, Reroll):
+            raise AttributeError("not a valid reroll type")
+
         self.modifier = in_modifier
         self.reroll = in_reroll
         super().__init__()
