@@ -59,7 +59,7 @@ class Value_Flyweight:
         in_reroll: Reroll = Reroll.NO,
         in_multiplier: int = 1
     ) -> Random_Value:
-        key = hash((in_die_size, in_modifier, in_reroll))
+        key = hash((in_die_size, in_modifier, in_reroll, in_multiplier))
 
         return Value_Flyweight.__get_or_create_value(
             Value_Flyweight.randoms,

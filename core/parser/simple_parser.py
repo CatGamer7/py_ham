@@ -55,14 +55,14 @@ class Simple_Parser:
 
         if (trimmed[0] == "-") or (trimmed[0] == "0"):
             return self._parse_non_positive(trimmed)
-        
-        elif trimmed[0].isdigit():
-            return self._parse_positive(trimmed)
-        
+                
         # If "d" is in a string, than it either is a random value or not a
         # value at all. Both are handled by _parse_random()
         elif "d" in trimmed:
             return self._parse_random(trimmed)
+        
+        elif trimmed[0].isdigit():
+            return self._parse_positive(trimmed)
         
         else:
             raise Format_Exception(
