@@ -1,8 +1,9 @@
-from rich.console import Console
+from cli import Cli_Controller
 
-from core.parser.simple_scanner import Simple_Scanner
 
-console = Console(highlight=False)
-scanner = Simple_Scanner(console)
-atkr = scanner.scan_defender_input()
-pass
+def main():
+    ctr = Cli_Controller()
+    ctr.run_calculation()
+
+if __name__ == "__main__":
+    main()

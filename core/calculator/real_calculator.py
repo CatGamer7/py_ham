@@ -4,6 +4,9 @@ from .base_calculator_strategy import Base_Calculator_Strategy
 # Real as in operating with reals (not just integers).
 # I.e. 0.5 wounds make sense
 class Real_Calculator(Base_Calculator_Strategy):
+
+    VERBOSE_NAME = "Real calculator"
+    QUICK_REF = "Fraction of a wound is significant"
     
     def get_attacks(self) -> float:
         return self.attacker.attacks.expected_value()

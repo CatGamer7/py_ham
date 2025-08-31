@@ -8,8 +8,7 @@ from core.model.value import (
     Non_Positive_Value,
     Not_Assigned_Value
 )
-
-from .mock_console import Mock_Console
+from test.mock import Mock_Console
 
 
 class Test_Simple_Scanner(TestCase):

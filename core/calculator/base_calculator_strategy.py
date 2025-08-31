@@ -6,6 +6,9 @@ from core.model import Attacker, Defender, Reroll
 # Made with 10th edition in mind
 class Base_Calculator_Strategy(ABC):
 
+    VERBOSE_NAME = None
+    QUICK_REF = None
+
     attacker: Attacker
     defender: Defender
 
