@@ -1,5 +1,5 @@
-from core.model import Format_Exception, Attacker, Defender
-from core.model.value import (
+from pyham40k.core.model import Format_Exception, Attacker, Defender
+from pyham40k.core.model.value import (
     Base_Value,
     Non_Positive_Value,
     Positive_Value,

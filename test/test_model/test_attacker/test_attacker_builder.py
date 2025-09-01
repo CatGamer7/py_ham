@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from core.model.attacker import Attacker, Attacker_Builder
-from core.model.value import (
+from pyham40k.core.model.attacker import Attacker, Attacker_Builder
+from pyham40k.core.model.value import (
     Non_Positive_Value,
     Random_Value,
     Positive_Value,

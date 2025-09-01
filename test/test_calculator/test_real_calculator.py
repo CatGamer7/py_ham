@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from core.calculator import Real_Calculator
-from core.parser import Simple_Parser
+from pyham40k.core.calculator import Real_Calculator
+from pyham40k.core.parser import Simple_Parser
 
 
 class Test_Real_Calculator(TestCase):

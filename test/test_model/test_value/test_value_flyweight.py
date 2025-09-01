@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from core.model.value import (
+from pyham40k.core.model.value import (
     Base_Value,
     Non_Positive_Value,
     Random_Value,

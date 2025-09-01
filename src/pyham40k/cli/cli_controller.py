@@ -1,8 +1,8 @@
 from rich.console import Console
 
-from core.calculator import Real_Calculator, Floor_Calculator
-from core.parser import Simple_Scanner
-from core.model import Attacker, Defender, Format_Exception
+from pyham40k.core.calculator import Real_Calculator, Floor_Calculator
+from pyham40k.core.parser import Simple_Scanner
+from pyham40k.core.model import Attacker, Defender, Format_Exception
 
 from .constants import (
     Cli_Prompt_Enum,

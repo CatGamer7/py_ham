@@ -1,5 +1,5 @@
-from core.model.value import Positive_Value, Not_Assigned_Value
-from core.model.format_exception import Format_Exception
+from pyham40k.core.model.value import Positive_Value, Not_Assigned_Value
+from pyham40k.core.model.format_exception import Format_Exception
 
 from .constants import DEFENDER_STAT_COL_WIDTH, DEFENDER_STAT_HEADER
 

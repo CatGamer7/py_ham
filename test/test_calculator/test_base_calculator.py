@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from core.calculator.base_calculator_strategy import Base_Calculator_Strategy
-from core.model import Reroll
+from pyham40k.core.calculator.base_calculator_strategy import Base_Calculator_Strategy
+from pyham40k.core.model import Reroll
 
 
 class Test_Base_Calculator(TestCase):

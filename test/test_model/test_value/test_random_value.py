@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from core.model import Format_Exception, Reroll
-from core.model.value import Random_Value
+from pyham40k.core.model import Format_Exception, Reroll
+from pyham40k.core.model.value import Random_Value
 
 
 class Test_Random_Value(TestCase):

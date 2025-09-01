@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from cli import Cli_Controller
-from cli.constants import WELCOME_MESSAGE, QUICK_REFERENCE, Cli_Prompt_Enum
-from cli.model import Cli_Prompt
+from pyham40k.cli import Cli_Controller
+from pyham40k.cli.constants import WELCOME_MESSAGE, QUICK_REFERENCE, Cli_Prompt_Enum
+from pyham40k.cli.model import Cli_Prompt
 from test.mock import Mock_Console
 
 

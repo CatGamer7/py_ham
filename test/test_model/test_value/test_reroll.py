@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from core.model.reroll import Reroll
+from pyham40k.core.model.reroll import Reroll
 
 
 class Test_Reroll(TestCase):

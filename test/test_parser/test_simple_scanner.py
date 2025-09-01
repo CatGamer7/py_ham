@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from core.parser.simple_scanner import Simple_Scanner
-from core.model import Attacker, Defender
-from core.model.value import (
+from pyham40k.core.parser.simple_scanner import Simple_Scanner
+from pyham40k.core.model import Attacker, Defender
+from pyham40k.core.model.value import (
     Random_Value,
     Positive_Value,
     Non_Positive_Value,

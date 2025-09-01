@@ -1,13 +1,13 @@
 from unittest import TestCase
 
-from core.model import Format_Exception, Reroll
-from core.model.value import (
+from pyham40k.core.model import Format_Exception, Reroll
+from pyham40k.core.model.value import (
     Simple_Value,
     Non_Positive_Value,
     Random_Value,
     Not_Assigned_Value
 )
-from core.parser import Simple_Parser
+from pyham40k.core.parser import Simple_Parser
 
 
 class Test_Simple_Parser(TestCase):

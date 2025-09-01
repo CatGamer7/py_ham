@@ -4,7 +4,7 @@ from .non_positive_value import Non_Positive_Value
 from .random_value import Random_Value
 from .positive_value import Positive_Value
 
-from core.model.reroll import Reroll
+from pyham40k.core.model.reroll import Reroll
 
 
 # Serves as a singleton when imported from its module

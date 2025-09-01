@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from core.model.defender import Defender, Defender_Builder
-from core.model.value import Positive_Value, Not_Assigned_Value
+from pyham40k.core.model.defender import Defender, Defender_Builder
+from pyham40k.core.model.value import Positive_Value, Not_Assigned_Value
 
 
 class Test_Defender_Builder(TestCase):

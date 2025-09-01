@@ -1,4 +1,4 @@
-from core.model.value import Base_Value
+from pyham40k.core.model.value import Base_Value
 
 from .attacker import Attacker
 from .attacker_state import Attacker_Builder_State

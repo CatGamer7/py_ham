@@ -1,6 +1,6 @@
 from enum import Enum
 
-from core.model.format_exception import Format_Exception
+from pyham40k.core.model.format_exception import Format_Exception
 
 
 class Reroll(Enum):

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from cli.model import Cli_File_Prompt
+from pyham40k.cli.model import Cli_File_Prompt
 from test.mock import Mock_Console
 
 

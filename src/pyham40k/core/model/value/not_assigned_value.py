@@ -1,4 +1,4 @@
-from core.model.format_exception import Format_Exception
+from pyham40k.core.model.format_exception import Format_Exception
 
 from .base_value import Base_Value
 

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from core.model.reroll import Reroll
-from core.model.format_exception import Format_Exception
+from pyham40k.core.model.reroll import Reroll
+from pyham40k.core.model.format_exception import Format_Exception
 
 
 class Base_Value(ABC):

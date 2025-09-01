@@ -1,9 +1,9 @@
 from rich.console import Console
 
-from core.model.attacker import Attacker, Attacker_Builder
-from core.model.defender import Defender, Defender_Builder
-from core.model.value import Base_Value
-from core.model import Format_Exception
+from pyham40k.core.model.attacker import Attacker, Attacker_Builder
+from pyham40k.core.model.defender import Defender, Defender_Builder
+from pyham40k.core.model.value import Base_Value
+from pyham40k.core.model import Format_Exception
 
 from .simple_parser import Simple_Parser
 

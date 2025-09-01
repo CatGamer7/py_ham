@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from core.model import Attacker, Defender, Reroll
+from pyham40k.core.model import Attacker, Defender, Reroll
 
 
 # Made with 10th edition in mind

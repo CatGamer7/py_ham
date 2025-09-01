@@ -1,10 +1,10 @@
-from core.model.value import (
+from pyham40k.core.model.value import (
     Random_Value,
     Non_Positive_Value,
     Positive_Value,
     Not_Assigned_Value
 )
-from core.model.format_exception import Format_Exception
+from pyham40k.core.model.format_exception import Format_Exception
 
 from .constants import ATTACKER_STAT_COL_WIDTH, ATTACKER_STAT_HEADER
 

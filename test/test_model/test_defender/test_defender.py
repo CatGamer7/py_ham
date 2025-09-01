@@ -1,7 +1,11 @@
 from unittest import TestCase
 
-from core.model import Defender, Format_Exception
-from core.model.value import Positive_Value, Random_Value, Not_Assigned_Value
+from pyham40k.core.model import Defender, Format_Exception
+from pyham40k.core.model.value import (
+    Positive_Value,
+    Random_Value,
+    Not_Assigned_Value
+)
 
 
 class Test_Defender(TestCase):

@@ -1,8 +1,8 @@
 from enum import Enum
 from typing import Any, Iterable
 
-from core.calculator import Floor_Calculator, Real_Calculator
-from cli.model import Cli_Prompt, Cli_Choice, Cli_File_Prompt
+from pyham40k.core.calculator import Floor_Calculator, Real_Calculator
+from .model import Cli_Prompt, Cli_Choice, Cli_File_Prompt
 
 
 WELCOME_MESSAGE = "pyham - to overanalyze your warhammer 40k 10e gameplay"

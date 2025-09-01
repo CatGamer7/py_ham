@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from cli.model import Cli_Choice
+from pyham40k.cli.model import Cli_Choice
 
 
 class Test_Cli_Choice(TestCase):
