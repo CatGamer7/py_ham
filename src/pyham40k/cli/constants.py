@@ -5,7 +5,7 @@ from pyham40k.core.calculator import Floor_Calculator, Real_Calculator
 from .model import Cli_Prompt, Cli_Choice, Cli_File_Prompt
 
 
-WELCOME_MESSAGE = "pyham - to overanalyze your warhammer 40k 10e gameplay"
+WELCOME_MESSAGE = "pyham - to overanalyze your Warhammer 40k 10e gameplay"
 QUICK_REFERENCE = "this is a tool to compare weapon performance against\n" + \
 "one another with a specific target in terms of epected number of wounds\n" + \
 "enter keys in parenthesis to choose actions\n\n" + \
