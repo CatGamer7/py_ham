@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyham40k"
-version = "1.0.0"
+version = "1.1.0"
 description = "pyham40k (pyham) - to overanalyze your Warhammer 40k 10e gameplay"
 requires-python = ">=3.12"
 authors = [{name = "Cat Gamer", email = "catgamer702@gmail.com"}]

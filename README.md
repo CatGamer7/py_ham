@@ -1,5 +1,5 @@
 # pyham40k
-pyham40k (pyham) - a tool to overanalyze your Warhammer 40k 10e gameplay.
+pyham40k (pyham, rarely py_ham) - a tool to overanalyze your Warhammer 40k 10e gameplay.
 
 # Table of Contents
 1. [Purpose](README.md#1-purpose)
