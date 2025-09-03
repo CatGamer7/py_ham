@@ -2,12 +2,12 @@
 pyham40k (pyham) - a tool to overanalyze your Warhammer 40k 10e gameplay.
 
 # Table of Contents
-1. [Purpose](#1.%20Purpose)
-2. [Methodology](#2.%20Methodology)
-3. [Notation](#3.%20Notation)
-4. [Installation](#4.%20Installation)
-5. [Usage](#5.%Usage)
-6. [Author](#6.%Author)
+1. [Purpose](README.md#1-purpose)
+2. [Methodology](README.md#2-methodology)
+3. [Notation](README.md#3-notation)
+4. [Installation](README.md#4-installation)
+5. [Usage](README.md#5-usage)
+6. [Author](README.md#6-author)
 
 # 1. Purpose
 pyham serves as a tool to analyze performance of different weapons (attackers) against arbitrary datasheets (defenders). This analysis is based on a statistical calculation - the expected number of wounds sustained by the defender. This number of wounds is naturally a discrete random value, described by repeated dice rolls. Therefore, comparison between the distributions of the number of wounds sustained by various defenders against different attackers must be made. pyham chooses to compare these distributions based on one characteristic - the expected value of wounds. Even though other characteristics (namely the variance) can be important, expected value is usually sufficient (especially if no random attributes for attacks or damage are present in the attacker's profile). Although die rolls are probabilistic and nothing in 10e rules can stop even the least suitable close combat weapon from inflicting wounds on the strongest tank, it is still reasonable to pick attackers with higher expected number of wounds against specific defenders. This last statement is the basis of pyham.
@@ -35,7 +35,7 @@ Some attributes include modifiers. This is a constant integer value that modifie
 Some random attributes include multipliers (such as 2d6, 4d6...). The Ev of such rolls is modified as per the linearity of expectation.
 
 # 3. Notation
-## Motivation for custom notation
+## 3.1 Motivation for custom notation
 The two main entities that are used in calculations are attackers and defenders, commonly referred to as profiles. The names of attributes take root from official names by Game Workshop but are slightly modified in pursuit of generality. For example, both "ballistic skill" and "weapon skill" were unified into "hit". As a side effect, all names were shortened to 1 letter to better fit the console table format.
 
 ## 3.2. Attacker
