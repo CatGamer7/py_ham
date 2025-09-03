@@ -1,12 +1,11 @@
-name: Publish
+name: Test and Build
 
 on:
-  push:
-    branches: [ main-dist ]
-    
+  push
+
 jobs:
-  deploy:
-    name: Publish
+  test-build:
+    name: Test and Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install requirements.txt
+          python -m pip install -r requirements.txt
           python -m pip install -e .
 
       - name: Run tests
@@ -30,7 +29,4 @@ jobs:
         run: python -m build
 
       - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine check dist/*
